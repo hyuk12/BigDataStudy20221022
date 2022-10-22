@@ -1,4 +1,46 @@
-강사님 이름 : 마홍준
-번호: 010-9430-9610
+
 
 KOSIS 국가 통계 포털
+
+국가기술 빅데이터 분석기사
+
+(컴퓨터 환경)
+cmd > systeminfo
+
+R 환경설정
+----------------
+r 다운로드
+
+https://cran.yu.ac.kr/
+ > window
+ > base
+ > Download R-4.2.1 for Windows
+
+언어선택 > 한국어
+> 다음 > 다음
+> 구성 요소 설치(사용자 편의를 위한 쉬운설치) >기본값사용 > 다음 > 바탕화면 체크해제 다음> 완료
+
+r studio 설치
+
+https://www.rstudio.com/products/rstudio/download/#download
+ 
+다음 > 다음 > 바로가기 아이콘 만들지 않겠다 
+> 설치 > 마침
+
+키면 Enable Automated Crash Reporting
+yes 엔터
+
+R studio 코딩 전용 폰트 : https://github.com/naver/d2codingfont/releases/tag/VER1.3.2
+
+zip 다운로드
+
+
+단축키 모음 보는 단축키
+alt + shift + k
+
+주석 
+ctrl + shift + c
+
+tools > global options > code > saving > encoding 
+utf-8
+
