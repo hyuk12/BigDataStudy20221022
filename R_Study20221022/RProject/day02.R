@@ -166,34 +166,104 @@ load("파일명")
 save("데이터 프레임명", file = "저장할파일명 확장자까지")
 '
 
+### 데이터 파악하기
+exam <- read.csv('C:/Users/admin/Documents/BigDataStudy20221022/resource/bigdata_R/csv_exam.csv')
+
+# 데이터 앞부분 확인하기
+head(exam)
+
+tail(exam)
+
+# 행의 범위 지정
+head(exam, 10)
+
+# 뷰어 창에서 데이터 확인하기
+View(exam)
+
+# 데이터가 몇 행, 몇 열로 구성되어 있는지 확인하기
+dim(exam)
+
+# 속성 파악
+str(exam)
+
+# 요약 통계량
+summary(exam)
+
+# 알수 있는 것
+'
+수학기준 
+1) 수학 시험 점수의 평균이 57.45점이다
+2) 수학 시험 점수가 가장 낮은 학생은 20점, 가장 높은 학생은 90점이다.
+3) 학생들의 수학점수가 54점을 중심으로 45.75점에서 75.75점 사이에 몰려있다.
+'
+
+## mpg 데이터 파악하기
+'
+ggplot2 패키지 안에 저장된 mpg데이터를 이용할 것
 
 
+'
+#1. ggplot2 패키지 설치
+install.packages('ggplot2')
+
+#2. mpg 데이터 불러오기
+mpg <- as.data.frame(ggplot2::mpg)
 
 
+#3. 데이터 확인
+head(mpg, 15)# 앞부분
+tail(mpg, 10)# 뒷부분
+View(mpg)# 뷰어 창에서 확인
+
+#4. dim() 이용해서 몇행 몇열인지 확인하기
+dim(mpg)
+
+#5. str() 속성 확인하기
+str(mpg)
+
+#6. summary() 요약 통계량 확인
+summary(mpg)
 
 
+'
+cty = 도시 연비
+hwy = 고속도로 연비
 
+도출 결과
+1. 도시 연비가 평균적으로 미국기준 갤런당 16.86이다
+2. 가장 낮은 연비는 9, 가장높은 연비는 35
+3. 미국기준 갤런당 17마일 중심에서 18마일 부터 27마일 사이에 모여있다.
+'
 
+'
+변수명 바꾸기
+'
+df_row <- data.frame(var1 = c(1, 2, 1),
+                     var2 = c(2, 3, 2))
+df_row
 
+# 데이터 조작 가공 패키지 설치
+install.packages("dplyr")
 
+#로드하기
+library(dplyr)
 
+# 데이터 프레임 복사본 만들기(원본 손실 방지)
+df_new <- df_row #복사본 생성
+df_new
 
+# 변수명 바꾸기
+# rename(데이터 프레임명, 새 변수명 = 기존변수명)
+df_new <- rename(df_new, v2 = var2)
+df_new
 
+# mpg 변수명 바꿔보기
+mpg_copy <- mpg
+mpg_copy
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# cty 는 city , hwy 는 highway로 일부만 표시 
+mpg_copy <- rename(mpg_copy, city = cty, highway = hwy)
+head(mpg_copy,10)
 
 
 
