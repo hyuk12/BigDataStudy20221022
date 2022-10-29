@@ -265,17 +265,116 @@ mpg_copy
 mpg_copy <- rename(mpg_copy, city = cty, highway = hwy)
 head(mpg_copy,10)
 
+# 파생 변수 만들기
+df <- data.frame(var1 = c(4, 3, 8),
+                 var2 = c(2, 6, 1))
+df
 
+# 두 변수의 합을 var_sum 파생변수를 만들어 df에 추가하기
 
+df$var_sum <- df$var1 + df$var2
+df
 
+# mpg 통합 연비 변수 만들기
 
+mpg_copy$total <- (mpg_copy$city + mpg_copy$highway) / 2
+head(mpg_copy)
 
+# 조건문 사용 파생변수 만들기
+'
+변수를 조합 할 수도 있지만 함수를 이용해서 파생변수를 만들수도 있다.
+조건에 따라 서로 다른 값을 반환하는 조건문 함수를 사용해본다.
+'
 
+'
+Q. 고연비 합격 판정을 받은 자동차가 몇대나 나올까?
+'
 
+#기준값 정하기
+summary(mpg_copy)
 
+# total 기준
+'
+중간 값 : 20.50
+평균: 20.15
+중간 값 을 기준으로 15.50 ~ 23.50에 분포
+대부분 25이하의 연비가 많고 25초과되는 연비는 적다.
+'
 
+# 히스토그램 생성해보기
 
+# 막대그래프: 어떤 값을 지닌 데이터의 많은 전반적인 분포를 알수 있는 그래프
+# 값의 빈도를 막대 길이로 표현한 그래프
+hist(mpg_copy$total)
 
+# 합격 판정 변수 만들기
+'조건문 만들기: 조건에 따라 서로 다른 값을 반환하는 함수!'
 
+'ifelse(조건, 조건에 맞을 때, 조건에 맞지 않을 때)'
 
+mpg_copy$testing = ifelse(mpg_copy$total >= 20, 'PASS','FAIL')
+head(mpg_copy,10)
 
+# 빈도표 찍어보기
+'
+table(변수명)
+'
+table(mpg_copy$testing)
+
+# 막대 그래프로 표현하기
+'ggplot2에 들어있는 qplot쓰기'
+ggplot2::qplot(mpg_copy$testing)
+
+# 중첩 조건문
+'
+total을 기준으로 A,B,C,D 등급 부여해보기
+'
+
+mpg_copy$grade <- ifelse(mpg_copy$total >= 30, "A",
+                         ifelse(mpg_copy$total >= 25, "B", 
+                                ifelse(mpg_copy$total >= 15, "C", "D")))
+ggplot2::qplot(mpg_copy$grade)
+
+## 데이터 전처리 
+
+# 조건에 맞는 데이터만 추출 - filter()
+exam <- read.csv('C:/Users/admin/Documents/BigDataStudy20221022/resource/bigdata_R/csv_exam.csv')
+
+# 1반 학생들만 추출
+exam %>% filter(class == 1)
+
+'dplyr 패키지는 %>% 기호를 이용해서 함수들을 나열하는 방식으로 코드를 작성한다.
+ %>% 단축키 -> ctrl + shift + m
+'
+exam %>% filter(class != 1)
+# 초과 미만 이상 이하 조건걸기
+
+exam %>% filter(math > 50)
+exam %>% filter(math < 50)
+exam %>% filter(english >= 80)
+exam %>% filter(english <= 80)
+
+# 여러 조건을 충족하는 행 추출하기 and 의 의미
+exam %>% filter(class == 1 & math >= 50)
+
+# 여러 조건중 하나 이상 충족하는 행 추출 or의미 
+exam %>% filter(math >= 90 | english >= 90)
+
+# 목록에 해당하는 행 추출하기
+'변수의 값이 지정한 목록에 해당될 경우만'
+exam %>% filter(class == 1 | class == 3 | class == 5)
+
+# 추출한 행으로 데이터를 만들기
+
+class1 <- exam %>% filter(class ==1)
+class2 <- exam %>% filter(class ==2)
+
+mean(class1$math)# 1반 수학 평균
+mean(class2$english)# 2반 영어 평균
+
+### 필요한 변수만 추출하기 - select
+
+# 변수 추출하기
+exam %>% select(math)
+
+exam %>% select(math,class)
