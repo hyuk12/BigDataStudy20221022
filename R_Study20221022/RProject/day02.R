@@ -378,3 +378,4 @@ mean(class2$english)# 2반 영어 평균
 exam %>% select(math)
 
 exam %>% select(math,class)
+
