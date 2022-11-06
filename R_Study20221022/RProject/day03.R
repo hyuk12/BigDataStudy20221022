@@ -17,7 +17,7 @@ dim(mpg)
 '- select()'
 
 library(dplyr)
-exam <- read.csv("C:/Users/admin/Documents/BigDataStudy20221022/resource/bigdata_R/csv_exam.csv")
+exam <- read.csv("C:/Users/admin/Documents/resource/R_resource/csv_exam.csv")
 head(exam)
 exam %>% select(math)
 
@@ -194,7 +194,7 @@ new_df2
 # summarise 에서 na.rm = T 사용하기
 '결측치 제외하고 요약'
 
-exam <- read.csv("C:/Users/admin/Documents/BigDataStudy20221022/resource/bigdata_R/csv_exam.csv")
+exam <- read.csv("C:/Users/admin/Documents/resource/R_resource/csv_exam.csv")
 exam[c(3,8,15),"math"] <- NA # 3,8,15 행의 math에 NA 할당
 
 exam %>% summarise(mean_math = mean(math))
@@ -453,7 +453,7 @@ spss , sas, stata등 다양한 통계분석 소프트웨어의 파일을
 2. 데이터 준비하기
 데이터 불러오기
 '
-raw_welfare <- read.spss(file = "C:/Users/admin/Documents/BigDataStudy20221022/resource/bigdata_R/Koweps_hpc10_2015_beta1.sav",
+raw_welfare <- read.spss(file = "C:/Users/admin/Documents/resource/R_resource/Koweps_hpc10_2015_beta1.sav",
                          to.data.frame = T)
 raw_welfare
 table(is.na(raw_welfare$h10_g4))
